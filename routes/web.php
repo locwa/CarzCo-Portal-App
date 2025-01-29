@@ -15,6 +15,10 @@ Route::get('/fleet', function () {
     return view('fleet');
 })->middleware(['auth', 'verified'])->name('fleet');
 
+Route::get('/employee-accounts', function () {
+    return view('employee-accounts');
+})->middleware(['auth', 'verified'])->name('employee-accounts');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
