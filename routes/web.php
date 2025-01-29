@@ -13,7 +13,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/fleet', function () {
     return view('fleet');
-})->name('fleet');
+})->middleware(['auth', 'verified'])->name('fleet');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
