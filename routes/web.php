@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Fleet;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,7 +13,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/fleet', function () {
-    return view('fleet');
+    $fleet_list = Fleet::all();
+    return view('fleet', ['fleet_list' => $fleet_list]);
 })->middleware(['auth', 'verified'])->name('fleet');
 
 Route::get('/employee-accounts', function () {
