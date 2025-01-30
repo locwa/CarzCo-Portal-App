@@ -13,7 +13,7 @@
             @foreach($fleet_list as $list)
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg w-80 h-64">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        <p class="font-light">{{ $list->make }}</p>
+                        <p class="font-light text-xl">{{ $list->make }}</p>
                         <h1 class="font-bold text-4xl">{{ $list->model }}</h1>
                         <p class="font-light">{{ $list->year }}</p>
                     </div>
