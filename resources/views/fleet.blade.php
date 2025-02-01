@@ -16,7 +16,9 @@
                         <p class="font-light text-xl">{{ $list->make }}</p>
                         <h1 class="font-bold text-4xl">{{ $list->model }}</h1>
                         <p class="font-light">{{ $list->year }}</p>
-                        <x-primary-button class="my-3">Edit Car</x-primary-button>
+                        <a href="./edit-car/{{ $list->id }}">
+                            <x-primary-button class="my-3">Edit Car</x-primary-button>
+                        </a>
                     </div>
                 </div>
             @endforeach
