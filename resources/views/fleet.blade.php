@@ -3,7 +3,9 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Fleet') }}
         </h2>
-        <x-primary-button>Add Car</x-primary-button>
+        <a href="./add_car">
+            <x-primary-button>Add Car</x-primary-button>
+        </a>
     </x-slot>
 
     <div class="py-12 px-2">

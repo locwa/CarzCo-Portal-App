@@ -17,6 +17,11 @@ Route::get('/fleet', function () {
     return view('fleet', ['fleet_list' => $fleet_list]);
 })->middleware(['auth', 'verified'])->name('fleet');
 
+Route::get('/add_car', function () {
+    $fleet_list = Fleet::all();
+    return view('add-car');
+})->middleware(['auth', 'verified'])->name('fleet');
+
 Route::get('/employee-accounts', function () {
     return view('employee-accounts');
 })->middleware(['auth', 'verified'])->name('employee-accounts');
