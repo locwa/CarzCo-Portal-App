@@ -17,10 +17,26 @@ Route::get('/fleet', function () {
     return view('fleet', ['fleet_list' => $fleet_list]);
 })->middleware(['auth', 'verified'])->name('fleet');
 
+Route::post('/add_car', function () {
+
+    // Add cars to database
+
+    Fleet::create([
+        'make' => request('make'),
+        'model' => request('model'),
+        'year' => request('year'),
+        'rent_price' => request('rent_price'),
+
+    ]);
+
+    return redirect('/fleet');
+
+})->middleware(['auth', 'verified'])->name('add-car');;
+
 Route::get('/add_car', function () {
     $fleet_list = Fleet::all();
     return view('add-car');
-})->middleware(['auth', 'verified'])->name('fleet');
+})->middleware(['auth', 'verified'])->name('add-car');
 
 Route::get('/employee-accounts', function () {
     return view('employee-accounts');

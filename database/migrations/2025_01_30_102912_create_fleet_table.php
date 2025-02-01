@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('model');
             $table->integer('year');
             $table->integer('rent_price');
+            $table->text('description');
         });
     }
 
