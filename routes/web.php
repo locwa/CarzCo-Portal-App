@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Models\Fleet;
 use Illuminate\Support\Facades\Route;
+use App\Models\Fleet;
+use App\Models\User;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -39,7 +40,8 @@ Route::get('/add_car', function () {
 })->middleware(['auth', 'verified'])->name('add-car');
 
 Route::get('/employee-accounts', function () {
-    return view('employee-accounts');
+    $accounts = User::all();
+    return view('employee-accounts', ['accounts' => $accounts]);
 })->middleware(['auth', 'verified'])->name('employee-accounts');
 
 Route::post('/edit-car/{id}', function ($id) {
