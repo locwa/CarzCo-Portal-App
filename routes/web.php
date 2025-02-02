@@ -45,6 +45,11 @@ Route::get('/employee-accounts', function () {
     return view('employee-accounts', ['accounts' => $accounts]);
 })->middleware(['auth', 'verified'])->name('employee-accounts');
 
+Route::get('/view-car/{id}', function ($id) {
+    $car_details = Fleet::where('id', $id)->get();
+    return view('view-car', ['car_details' => $car_details]);
+})->middleware(['auth', 'verified'])->name('view-car');
+
 Route::post('/edit-car/{id}', function ($id) {
 
     // Edit cars in database
@@ -54,10 +59,10 @@ Route::post('/edit-car/{id}', function ($id) {
         'model' => request('model'),
         'year' => request('year'),
         'rent_price' => request('rent_price'),
-
+        'description' => request('description'),
     ]);
 
-    return redirect('/fleet');
+    return redirect('/view-car/' . $id);
 })->middleware(['auth', 'verified'])->name('edit-car');
 
 Route::get('/edit-car/{id}', function ($id) {

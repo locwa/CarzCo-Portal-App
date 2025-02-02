@@ -11,7 +11,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            <form method="post" action="./{{ $car_details->value('id') }}" class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <form method="post" action="../edit-car/{{ $car_details->value('id') }}" class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @csrf
 
@@ -37,7 +37,7 @@
 
                     <div class="mb-6">
                         <x-input-label>Description</x-input-label>
-                        <textarea name='description' class="mt-1 block w-full 'border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">{{ $car_details->value('description') }}</textarea>
+                        <textarea name='description' rows="30" class="mt-1 block w-full 'border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">{{ $car_details->value('description') }}</textarea>
                     </div>
 
                     <x-primary-button>Edit</x-primary-button>

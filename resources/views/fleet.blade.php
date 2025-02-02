@@ -36,8 +36,8 @@
                                 <x-primary-button class="my-3">{{ $list->status ? "Make Available" : "Make Unavailable" }}</x-primary-button>
                             </a>
                             @if(Auth::user()->is_admin)
-                                <a href="./edit-car/{{ $list->id }}">
-                                    <x-primary-button class="my-3">Edit Car</x-primary-button>
+                                <a href="./view-car/{{ $list->id }}">
+                                    <x-primary-button class="my-3">View Car</x-primary-button>
                                 </a>
                             @endif
                         </div>
