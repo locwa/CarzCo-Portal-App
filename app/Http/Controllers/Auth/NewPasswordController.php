@@ -20,7 +20,7 @@ class NewPasswordController extends Controller
      */
     public function create(Request $request , int $id): RedirectResponse
     {
-        User::where(['id' => $id])->update(['is_password_reset'=> 1, 'password' => Hash::make('1')]);
+        User::where(['id' => $id])->update(['password' => Hash::make('1')]);
         return redirect('/employee-accounts');
     }
 
