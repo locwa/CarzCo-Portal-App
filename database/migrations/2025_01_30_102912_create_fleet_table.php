@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('year');
             $table->integer('rent_price');
             $table->text('description');
+            $table->boolean('status');
         });
     }
 
