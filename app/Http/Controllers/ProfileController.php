@@ -47,13 +47,12 @@ class ProfileController extends Controller
             'password' => ['required', 'current_password'],
         ]);
 
-        if(User::where('is_admin', 1)->count() > 1){
+        if(User::where('is_admin', 1)->count() > 2){
             User::where('id', $id)->delete();
             return Redirect::to('/employee-accounts');
         } else {
             return Redirect::to('/employee-accounts?status=failed');
         }
-
 
     }
 }

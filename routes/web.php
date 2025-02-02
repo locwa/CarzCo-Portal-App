@@ -70,13 +70,16 @@ Route::get('/delete-user/{id}', function ($id) {
 
 Route::get('/update-status/{id}', function ($id) {
     $userDetails = User::where('id', $id)->get();
-    if ($userDetails->value('is_admin') == 1) {
-        User::where('id', $id)->update(['is_admin' => 0]);
+    if(User::where('is_admin', 1)->count() > 2){
+        if ($userDetails->value('is_admin') == 1) {
+            User::where('id', $id)->update(['is_admin' => 0]);
+        } else {
+            User::where('id', $id)->update(['is_admin' => 1]);
+        }
+        return redirect('/employee-accounts');
     } else {
-        User::where('id', $id)->update(['is_admin' => 1]);
+        return redirect('/employee-accounts?status=failed');
     }
-
-    return redirect('/employee-accounts');
 });
 
 Route::middleware('auth')->group(function () {
