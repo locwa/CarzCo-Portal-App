@@ -21,12 +21,15 @@
                     <p class="font-light text-sm text-gray-800 dark:text-gray-200 leading-tight">{{ $employee->is_admin ? "Admin" : "User" }}</p>
                 </div>
 
-                <div class="text-center flex flex-col">
+                <div class="flex flex-col items-center">
                     <a href="./reset-password/{{ $employee->id }}">
-                        <x-primary-button  class="mb-2">Reset Password</x-primary-button>
+                        <x-primary-button  class="mb-2 w-full">Reset Password</x-primary-button>
                     </a>
                     <a href="./delete-user/{{ $employee->id }}">
-                        <x-danger-button>Delete Account</x-danger-button>
+                        <x-danger-button class="mb-2 w-full">Delete Account</x-danger-button>
+                    </a>
+                    <a href="./update-status/{{ $employee->id }}">
+                        <x-primary-button class="mb-2 w-full">{{ $employee->is_admin ? "Make User" : "Make Admin" }}</x-primary-button>
                     </a>
                 </div>
 
