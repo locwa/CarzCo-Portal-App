@@ -27,7 +27,8 @@ Route::post('/add_car', function () {
         'model' => request('model'),
         'year' => request('year'),
         'rent_price' => request('rent_price'),
-
+        'description' => request('description'),
+        'status' => 0,
     ]);
 
     return redirect('/fleet');

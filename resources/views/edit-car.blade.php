@@ -35,12 +35,10 @@
                         <x-text-input name='rent_price' class="mt-1 block w-full" value="{{ $car_details->value('rent_price') }}"></x-text-input>
                     </div>
 
-                    <!--
                     <div class="mb-6">
                         <x-input-label>Description</x-input-label>
-                        <x-text-input name='Description' class="mt-1 block w-full">e.g, 2500</x-text-input>
+                        <textarea name='description' class="mt-1 block w-full 'border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">{{ $car_details->value('description') }}</textarea>
                     </div>
-                    -->
 
                     <x-primary-button>Edit</x-primary-button>
 
