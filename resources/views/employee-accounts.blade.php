@@ -12,8 +12,8 @@
 
     <div class="py-12 px-2">
         @foreach($accounts as $employee)
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-3">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-3 ">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 flex items-center justify-between h-56">
 
                 <div class="text-gray-900 dark:text-gray-100">
                     <h2 class="font-semibold text-2xl text-gray-800 dark:text-gray-200 leading-tight mb-4">{{ $employee->name }}</h2>
@@ -21,9 +21,14 @@
                     <p class="font-light text-sm text-gray-800 dark:text-gray-200 leading-tight">{{ $employee->is_admin ? "Admin" : "User" }}</p>
                 </div>
 
-                <a href="./view-profile/{{ $employee->id }}">
-                    <x-primary-button>View Profile</x-primary-button>
-                </a>
+                <div class="text-center flex flex-col">
+                    <a href="./view-profile/{{ $employee->id }}">
+                        <x-primary-button  class="mb-2">Reset Password</x-primary-button>
+                    </a>
+                    <a href="./delete-user/{{ $employee->id }}">
+                        <x-danger-button>Delete Account</x-danger-button>
+                    </a>
+                </div>
 
             </div>
         </div>
