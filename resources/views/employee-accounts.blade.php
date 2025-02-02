@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="text-center flex flex-col">
-                    <a href="./view-profile/{{ $employee->id }}">
+                    <a href="./reset-password/{{ $employee->id }}">
                         <x-primary-button  class="mb-2">Reset Password</x-primary-button>
                     </a>
                     <a href="./delete-user/{{ $employee->id }}">

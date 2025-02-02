@@ -18,9 +18,10 @@ class NewPasswordController extends Controller
     /**
      * Display the password reset view.
      */
-    public function create(Request $request): View
+    public function create(Request $request , int $id): RedirectResponse
     {
-        return view('auth.reset-password', ['request' => $request]);
+        User::where(['id' => $id])->update(['is_password_reset'=> 1, 'password' => Hash::make('1')]);
+        return redirect('/employee-accounts');
     }
 
     /**
@@ -54,8 +55,12 @@ class NewPasswordController extends Controller
         // If the password was successfully reset, we will redirect the user back to
         // the application's home authenticated view. If there is an error we can
         // redirect them back to where they came from with their error message.
+        function resetSuccess($status) {
+            User::where(['id' => $userId])->update(['is_password_reset' => 0]);
+            redirect()->route('dashboard')->with('status', __($status));
+        }
         return $status == Password::PASSWORD_RESET
-                    ? redirect()->route('login')->with('status', __($status))
+                    ? resetSuccess($status)
                     : back()->withInput($request->only('email'))
                         ->withErrors(['email' => __($status)]);
     }
