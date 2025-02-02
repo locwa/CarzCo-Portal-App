@@ -64,10 +64,14 @@ Route::get('/edit-car/{id}', function ($id) {
     return view('edit-car', ['car_details' => $car_details]);
 })->middleware(['auth', 'verified'])->name('edit-car');
 
+Route::get('/delete-user/{id}', function ($id) {
+    return view('delete-user-form', ['id' => $id]);
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::delete('/profile-delete/{id}', [ProfileController::class, 'destroy'])->name('profile-delete');
 });
 
 require __DIR__.'/auth.php';
