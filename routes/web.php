@@ -70,6 +70,26 @@ Route::get('/edit-car/{id}', function ($id) {
     return view('edit-car', ['car_details' => $car_details]);
 })->middleware(['auth', 'verified'])->name('edit-car');
 
+Route::get('/fleet/edit-car-availability/{id}', function ($id) {
+    if (Fleet::where('id', $id)->value('status') == 0) {
+        Fleet::where('id', $id)->update(['status' => 1]);
+    } else {
+        Fleet::where('id', $id)->update(['status' => 0]);
+    }
+
+    return redirect('/fleet');
+})->middleware(['auth', 'verified'])->name('edit-car-availability');
+
+Route::get('/view-car/edit-car-availability/{id}', function ($id) {
+    if (Fleet::where('id', $id)->value('status') == 0) {
+        Fleet::where('id', $id)->update(['status' => 1]);
+    } else {
+        Fleet::where('id', $id)->update(['status' => 0]);
+    }
+
+    return redirect('/view-car/'. $id);
+})->middleware(['auth', 'verified'])->name('edit-car-availability');
+
 Route::get('/delete-user/{id}', function ($id) {
     return view('delete-user-form', ['id' => $id]);
 });

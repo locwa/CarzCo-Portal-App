@@ -32,8 +32,8 @@
                         </div>
 
                         <div class="flex gap-2">
-                            <a href="./edit-car/{{ $list->id }}">
-                                <x-primary-button class="my-3">{{ $list->status ? "Make Available" : "Make Unavailable" }}</x-primary-button>
+                            <a href="./fleet/edit-car-availability/{{ $list->id }}">
+                                <x-secondary-button class="my-3">{{ $list->status ? "Make Available" : "Make Unavailable" }}</x-secondary-button>
                             </a>
                             @if(Auth::user()->is_admin)
                                 <a href="./view-car/{{ $list->id }}">

@@ -4,7 +4,7 @@
             {{ __('View Car') }}
         </h2>
         <div class="flex gap-4">
-            <a href="./edit-car/{{ $car_details->value('id') }}">
+            <a href="./edit-car-availability/{{ $car_details->value('id') }}">
                 <x-secondary-button>{{ $car_details->value('status') ? "Make Available" : "Make Unavailable" }}</x-secondary-button>
             </a>
             <a href="../edit-car/{{ $car_details->value('id') }}">
@@ -28,7 +28,7 @@
                             <h1 class="text-4xl font-bold"> {{ $car_details->value('model') }}</h1>
                             <h4 class="text-lg">{{ $car_details->value('year') }}</h4>
                         </div>
-                        <div>
+                        <div class="text-right">
                             <h4 class="text-lg">ID: {{ $car_details->value('id') }}</h4>
                             <h4 class="text-lg">Status: {{ $car_details->value('status') ? "Unavailable" : "Available" }}</h4>
                         </div>
