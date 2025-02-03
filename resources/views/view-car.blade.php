@@ -40,6 +40,7 @@
 
                     <hr>
 
+                    <h1 class=" m-6 text-4xl font-bold text-gray-900 dark:text-gray-100">Description:</h1>
                     <div class="m-6 text-gray-900 dark:text-gray-100 whitespace-pre-wrap">{!! $car_details->value('description') !!}</div>
             </div>
         </div>
