@@ -13,6 +13,9 @@
             <a href="./delete-car/{{ $car_details->value('id') }}">
                 <x-danger-button>Delete Car</x-danger-button>
             </a>
+            <a href="../fleet">
+                <x-secondary-button>Back To Fleet</x-secondary-button>
+            </a>
         </div>
     </x-slot>
 
