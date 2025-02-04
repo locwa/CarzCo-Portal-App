@@ -15,7 +15,7 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('fleet')" :active="request()->routeIs('fleet')">
+                    <x-nav-link :href="route('fleet')" :active="request()->routeIs('fleet') || request()->routeIs('view-car') || request()->routeIs('edit-car') || request()->routeIs('add-car')">
                         {{ __('Fleet') }}
                     </x-nav-link>
                     @if(Auth::user()->is_admin)
