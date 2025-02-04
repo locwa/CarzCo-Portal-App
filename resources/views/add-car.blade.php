@@ -36,7 +36,7 @@
 
                     <div class="mb-6">
                         <x-input-label>Description</x-input-label>
-                        <textarea name='description' rows="30" class="mt-1 block w-full 'border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" placeholder="e.g., This is the greatest car"></textarea>
+                        <x-textarea></x-textarea>
                     </div>
 
                     <x-primary-button>Add</x-primary-button>
