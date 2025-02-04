@@ -10,7 +10,7 @@
             <a href="../edit-car/{{ $car_details->value('id') }}">
                 <x-primary-button>Edit Car</x-primary-button>
             </a>
-            <a href="./delete-car/{{ $car_details->value('id') }}">
+            <a href="../delete-car/{{ $car_details->value('id') }}">
                 <x-danger-button>Delete Car</x-danger-button>
             </a>
             <a href="../fleet">
@@ -32,8 +32,9 @@
                             <h4 class="text-lg">{{ $car_details->value('year') }}</h4>
                         </div>
                         <div class="text-right">
-                            <h4 class="text-lg">ID: {{ $car_details->value('id') }}</h4>
-                            <h4 class="text-lg">Status: {{ $car_details->value('status') ? "Unavailable" : "Available" }}</h4>
+                            <h4 class="text-lg"><strong>ID:</strong> {{ $car_details->value('id') }}</h4>
+                            <h4 class="text-lg"><strong>Status:</strong> {{ $car_details->value('status') ? "Unavailable" : "Available" }}</h4>
+                            <h4 class="text-lg"><strong>Rent Price:</strong> {{ numfmt_format_currency(numfmt_create('en_US', NumberFormatter::CURRENCY), $car_details->value('rent_price'),"USD") }}</h4>
                         </div>
                         </div>
                     </div>
