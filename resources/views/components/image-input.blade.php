@@ -2,3 +2,30 @@
     Upload Photos +
 </label>
 <input type="file" id="imageInput" alt="photo upload" accept="image/*" class="mt-2 opacity-0 hover:file:cursor-pointer file:inline-flex file:items-center file:px-4 file:py-2 file:bg-gray-800 dark:file:bg-gray-200 file:border file:border-transparent file:rounded-md file:font-semibold file:text-xs file:text-white dark:file:text-gray-800 file:uppercase file:tracking-widest hover:file:bg-gray-700 dark:hover:file:bg-white focus:file:bg-gray-700 dark:file:focus:bg-white active:file:bg-gray-900 dark:file:active:bg-gray-300 focus:file:outline-none focus:file:ring-2 focus:file:ring-indigo-500 focus:file:ring-offset-2 dark:focus:file:ring-offset-gray-800 file:transition file:ease-in-out file:duration-150" multiple>
+<div id="preview" class="py-4"></div>
+<script>
+    document.getElementById('imageInput').addEventListener('change', function(event) {
+        var files = event.target.files;
+        var preview = document.getElementById('preview');
+
+        // Clear any existing content
+        preview.innerHTML = '';
+
+        // Loop through all selected files
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+
+            // Only process image files
+            if (!file.type.match('image.*')) {
+                continue;
+            }
+
+            var img = document.createElement('img');
+            img.src = URL.createObjectURL(file);
+            img.classList.add("h-56")
+
+            // Append the container to the preview div
+            preview.appendChild(img);
+        }
+    });
+</script>

@@ -39,6 +39,10 @@
                         <x-textarea></x-textarea>
                     </div>
 
+                    <div class="mb-6">
+                        <x-image-input></x-image-input>
+                    </div>
+
                     <x-primary-button>Add</x-primary-button>
 
                 </div>

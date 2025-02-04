@@ -41,8 +41,7 @@
                     </div>
 
                     <div class="mb-6">
-                        <x-input-label>Photos</x-input-label>
-
+                        <x-image-input></x-image-input>
                     </div>
 
                     <x-primary-button>Edit</x-primary-button>
