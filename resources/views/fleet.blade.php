@@ -11,27 +11,28 @@
     </x-slot>
 
     <div class="py-12 px-2">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-wrap justify-center gap-4">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-wrap flex-col gap-4">
             @foreach($fleet_list as $list)
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg w-1/3 h-96">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg h-80">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
 
                         <div class="flex justify-between items-center">
 
-                            <div class="w-2/3">
+                            <div class="">
                                 <p class="font-light text-xl">{{ $list->make }}</p>
                                 <h1 class="font-bold text-4xl">{{ $list->model }}</h1>
                                 <p class="font-light">{{ $list->year }}</p>
                             </div>
 
-                            <div class="w-1/3 text-right">
-                                <p class="font-light text-sm">ID: {{ $list->id }}</p>
-                                <p class="font-light">Status: {{ $list->status ? "Unavailable" : "Available" }}</p>
+                            <div class=" text-right">
+                                <p class="font-light text-sm"><span class="font-bold">ID</span>: {{ $list->id }}</p>
+                                <p class="font-light"><span class="font-bold">Status:</span> {{ $list->status ? "Unavailable" : "Available" }}</p>
+                                <p class="font-light"><span class="font-bold">Rent Price:</span> {{ numfmt_format_currency(numfmt_create('en_US', NumberFormatter::CURRENCY), $list->rent_price,"USD") }}</p>
                             </div>
 
                         </div>
 
-                        <div class="flex gap-2">
+                        <div class="flex gap-2 justify-end">
                             <a href="./fleet/edit-car-availability/{{ $list->id }}">
                                 <x-secondary-button class="my-3">{{ $list->status ? "Make Available" : "Make Unavailable" }}</x-secondary-button>
                             </a>
