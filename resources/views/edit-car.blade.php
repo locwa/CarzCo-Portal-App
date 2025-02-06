@@ -41,6 +41,8 @@
                     </div>
 
                     <div class="mb-6">
+                        <p class="mb-2">Upload Photos here</p>
+                        <p class="text-xs mb-4">* Note that uploading will delete all previous photos</p>
                         <x-image-input></x-image-input>
                     </div>
 

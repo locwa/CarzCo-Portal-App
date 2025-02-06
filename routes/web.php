@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Fleet;
 use App\Models\User;
+use App\Http\Controllers\FleetController;
+use Illuminate\Support\Facades\Storage;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -14,29 +16,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/fleet', function () {
-    $fleet_list = Fleet::all();
-    return view('fleet', ['fleet_list' => $fleet_list]);
+    return view('fleet', ['fleet_list' => $fleet_list = Fleet::all()]);
 })->middleware(['auth', 'verified'])->name('fleet');
 
-Route::post('/add_car', function () {
-
-    // Add cars to database
-
-    Fleet::create([
-        'make' => request('make'),
-        'model' => request('model'),
-        'year' => request('year'),
-        'rent_price' => request('rent_price'),
-        'description' => request('description'),
-        'status' => 0,
-    ]);
-
-    return redirect('/fleet');
-
-})->middleware(['auth', 'verified'])->name('add-car');;
+Route::post('/add_car', [FleetController::class, 'store'])->middleware(['auth', 'verified'])->name('add-car');;
 
 Route::get('/add_car', function () {
-    $fleet_list = Fleet::all();
     return view('add-car');
 })->middleware(['auth', 'verified'])->name('add-car');
 
@@ -46,49 +31,20 @@ Route::get('/employee-accounts', function () {
 })->middleware(['auth', 'verified'])->name('employee-accounts');
 
 Route::get('/view-car/{id}', function ($id) {
-    $car_details = Fleet::where('id', $id)->get();
-    return view('view-car', ['car_details' => $car_details]);
+    $carDetails = Fleet::where('id', $id)->get();
+    return view('view-car', ['car_details' => $carDetails]);
 })->middleware(['auth', 'verified'])->name('view-car');
 
-Route::post('/edit-car/{id}', function ($id) {
-
-    // Edit cars in database
-
-    Fleet::where(['id' => $id])->update([
-        'make' => request('make'),
-        'model' => request('model'),
-        'year' => request('year'),
-        'rent_price' => request('rent_price'),
-        'description' => request('description'),
-    ]);
-
-    return redirect('/view-car/' . $id);
-})->middleware(['auth', 'verified'])->name('edit-car');
+Route::post('/edit-car/{id}', [FleetController::class, 'update'])->middleware(['auth', 'verified'])->name('edit-car');
 
 Route::get('/edit-car/{id}', function ($id) {
     $car_details = Fleet::where('id', $id)->get();
     return view('edit-car', ['car_details' => $car_details]);
 })->middleware(['auth', 'verified'])->name('edit-car');
 
-Route::get('/fleet/edit-car-availability/{id}', function ($id) {
-    if (Fleet::where('id', $id)->value('status') == 0) {
-        Fleet::where('id', $id)->update(['status' => 1]);
-    } else {
-        Fleet::where('id', $id)->update(['status' => 0]);
-    }
+Route::get('/fleet/edit-car-availability/{id}', [FleetController::class, 'editAvailability'])->middleware(['auth', 'verified'])->name('edit-car-availability');
 
-    return redirect('/fleet');
-})->middleware(['auth', 'verified'])->name('edit-car-availability');
-
-Route::get('/view-car/edit-car-availability/{id}', function ($id) {
-    if (Fleet::where('id', $id)->value('status') == 0) {
-        Fleet::where('id', $id)->update(['status' => 1]);
-    } else {
-        Fleet::where('id', $id)->update(['status' => 0]);
-    }
-
-    return redirect('/view-car/'. $id);
-})->middleware(['auth', 'verified'])->name('edit-car-availability');
+Route::get('/view-car/edit-car-availability/{id}', [FleetController::class, 'editAvailability'])->middleware(['auth', 'verified'])->name('edit-car-availability');
 
 Route::get('/delete-user/{id}', function ($id) {
     return view('delete-user-form', ['id' => $id]);

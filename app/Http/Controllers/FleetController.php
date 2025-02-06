@@ -19,17 +19,33 @@ class FleetController extends Controller
             'rent_price' => 'required',
             'description' => 'required',
         ]);
-        Storage::disk('public')->putFileAs('cars', request('imageInput'), $id . "-" . request('make') . "-" . request('year') . "-" . str_replace(' ', '-', request('model')) . ".jpg", "public");
+
+        $newCar = Fleet::create([
+            'make' => request('make'),
+            'model' => request('model'),
+            'year' => request('year'),
+            'rent_price' => request('rent_price'),
+            'description' => request('description'),
+            'status' => 0,
+        ]);
+
+        $files = $request->file('imageInput');
+        $id = $newCar->id;
+
+        Fleet::where('id', $id)->update(['photo_file_header' => $id . "-" . request('make') . "-" . request('year') . "-" . str_replace(' ', '-', request('model')) . "-"]);
+
+        if (count($files) > 0){
+            for ($i = 0; $i < count($files); $i++) {
+                Storage::disk('public')->putFileAs('cars', $files[$i], $id . "-" . request('make') . "-" . request('year') . "-" . str_replace(' ', '-', request('model')) . "-" . $i . ".jpg", "public");
+            }
+        }
         return redirect('/fleet');
+
     }
 
     public function update(Request $request, int $id) {
 
         // Edit cars in database
-        /*
-
-        dd($files[0]);
-        */
 
         Fleet::where(['id' => $id])->update([
             'make' => request('make'),
@@ -38,9 +54,15 @@ class FleetController extends Controller
             'rent_price' => request('rent_price'),
             'description' => request('description'),
         ]);
+
         $files = $request->file('imageInput');
-        for ($i = 0; $i < count($files); $i++) {
-            Storage::disk('public')->putFileAs('cars', $files[$i], $id . "-" . request('make') . "-" . request('year') . "-" . str_replace(' ', '-', request('model')) . "-" . $i . ".jpg", "public");
+
+        try{
+            for ($i = 0; $i < count($files); $i++) {
+                Storage::disk('public')->putFileAs('cars', $files[$i], $id . "-" . request('make') . "-" . request('year') . "-" . str_replace(' ', '-', request('model')) . "-" . $i . ".jpg", "public");
+            }
+        } catch (\TypeError $te){
+            return redirect('/view-car/' . $id);
         }
 
         return redirect('/view-car/' . $id);
