@@ -24,6 +24,10 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
+                    <div class="mb-10 flex justify-center" id="imagesContainer">
+                        <x-image-carousel photoCount="{{ $car_details->value('photo_count') }}" photoFileHeader="{{$car_details->value('photo_file_header')}}" carInfo="{{ $car_details->value('year'). ' '. $car_details->value('make'). ' '. $car_details->value('model') }}"></x-image-carousel>
+                    </div>
+
                     <!-- Header -->
                     <div class="flex justify-between items-center">
                         <div>

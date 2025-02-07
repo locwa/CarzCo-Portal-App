@@ -32,7 +32,10 @@ class FleetController extends Controller
         $files = $request->file('imageInput');
         $id = $newCar->id;
 
-        Fleet::where('id', $id)->update(['photo_file_header' => $id . "-" . request('make') . "-" . request('year') . "-" . str_replace(' ', '-', request('model')) . "-"]);
+        Fleet::where('id', $id)->update([
+            'photo_file_header' => $id . "-" . request('make') . "-" . request('year') . "-" . str_replace(' ', '-', request('model')) . "-",
+            'photo_count' => count($files),
+        ]);
 
         if (count($files) > 0){
             for ($i = 0; $i < count($files); $i++) {

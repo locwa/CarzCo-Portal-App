@@ -20,6 +20,8 @@ return new class extends Migration
             $table->integer('rent_price');
             $table->text('description');
             $table->boolean('status');
+            $table->string('photo_file_header');
+            $table->integer('photo_count');
         });
     }
 
