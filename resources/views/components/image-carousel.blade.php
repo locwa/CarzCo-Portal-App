@@ -5,7 +5,7 @@
 ])
 
 <x-img-nav-button imgCount="{{ $photoCount }}" position="left" imgHeader="{{ $photoFileHeader }}"></x-img-nav-button>
-    <img id="carPhoto" class="h-2/3 w-full" src="../storage/cars/{{ $photoFileHeader . '0' . '.jpg'}}" alt="{{ $carInfo }}">
+    <img id="carPhoto" class="h-2/3 w-3/4" src="../storage/cars/{{ $photoFileHeader . '0' . '.jpg'}}" alt="{{ $carInfo }}">
 <x-img-nav-button imgCount="{{ $photoCount }}" position="right" imgHeader="{{ $photoFileHeader }}"></x-img-nav-button>
 
 <script>
