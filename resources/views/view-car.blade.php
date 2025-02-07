@@ -7,12 +7,14 @@
             <a href="./edit-car-availability/{{ $car_details->value('id') }}">
                 <x-secondary-button>{{ $car_details->value('status') ? "Make Available" : "Make Unavailable" }}</x-secondary-button>
             </a>
-            <a href="../edit-car/{{ $car_details->value('id') }}">
-                <x-primary-button>Edit Car</x-primary-button>
-            </a>
-            <a href="../delete-car/{{ $car_details->value('id') }}">
-                <x-danger-button>Delete Car</x-danger-button>
-            </a>
+            @if(Auth::user()->is_admin)
+                <a href="../edit-car/{{ $car_details->value('id') }}">
+                    <x-primary-button>Edit Car</x-primary-button>
+                </a>
+                <a href="../delete-car/{{ $car_details->value('id') }}">
+                    <x-danger-button>Delete Car</x-danger-button>
+                </a>
+            @endif
             <a href="../fleet">
                 <x-secondary-button>Back To Fleet</x-secondary-button>
             </a>
