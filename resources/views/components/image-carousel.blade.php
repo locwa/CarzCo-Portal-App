@@ -11,11 +11,14 @@
 <script>
     let index = 0;
 
-    function previousButton (photoHeader){
+    function previousButton (photoHeader, imgCount){
         let image = document.getElementById('carPhoto');
         if (index > 0){
             image.src = `../storage/cars/${photoHeader}${index - 1}.jpg`;
             index--;
+        } else if (index === 0){
+            image.src = `../storage/cars/${photoHeader}${imgCount - 1}.jpg`
+            index = imgCount - 1;
         }
     }
     function nextButton (photoHeader, imgCount){
@@ -23,6 +26,9 @@
         if (index !== (imgCount - 1)){
             image.src = `../storage/cars/${photoHeader}${index + 1}.jpg`;
             index++;
+        } else if (index === (imgCount - 1)){
+            image.src = `../storage/cars/${photoHeader}0.jpg`;
+            index = 0;
         }
     }
 </script>
