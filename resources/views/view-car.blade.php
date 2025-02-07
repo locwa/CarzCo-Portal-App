@@ -11,9 +11,11 @@
                 <a href="../edit-car/{{ $car_details->value('id') }}">
                     <x-primary-button>Edit Car</x-primary-button>
                 </a>
-                <a href="../delete-car/{{ $car_details->value('id') }}">
+                <form method="POST" action="../delete-car/{{ $car_details->value('id') }}">
+                    @csrf
+                    @method('delete')
                     <x-danger-button>Delete Car</x-danger-button>
-                </a>
+                </form>
             @endif
             <a href="../fleet">
                 <x-secondary-button>Back To Fleet</x-secondary-button>

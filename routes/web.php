@@ -42,6 +42,8 @@ Route::get('/edit-car/{id}', function ($id) {
     return view('edit-car', ['car_details' => $car_details]);
 })->middleware(['auth', 'verified'])->name('edit-car');
 
+
+
 Route::get('/fleet/edit-car-availability/{id}', [FleetController::class, 'editAvailability'])->middleware(['auth', 'verified'])->name('edit-car-availability');
 
 Route::get('/view-car/edit-car-availability/{id}', [FleetController::class, 'editAvailability'])->middleware(['auth', 'verified'])->name('edit-car-availability');
@@ -69,5 +71,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile-delete/{id}', [ProfileController::class, 'destroy'])->name('profile-delete');
 });
+
+Route::delete('/delete-car/{id}', function ($id){
+    Fleet::where('id', $id)->delete();
+    return redirect('/fleet');
+})->middleware(['auth', 'verified'])->name('delete-car');
 
 require __DIR__.'/auth.php';
