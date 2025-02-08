@@ -42,8 +42,6 @@ Route::get('/edit-car/{id}', function ($id) {
     return view('edit-car', ['car_details' => $car_details]);
 })->middleware(['auth', 'verified'])->name('edit-car');
 
-
-
 Route::get('/fleet/edit-car-availability/{id}', [FleetController::class, 'editAvailability'])->middleware(['auth', 'verified'])->name('edit-car-availability');
 
 Route::get('/view-car/edit-car-availability/{id}', [FleetController::class, 'editAvailability'])->middleware(['auth', 'verified'])->name('edit-car-availability');
